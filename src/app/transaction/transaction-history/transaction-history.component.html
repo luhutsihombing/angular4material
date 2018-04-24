@@ -1,0 +1,49 @@
+<div class="demo-table-container demo-mat-table-example mat-elevation-z4 mat-table-selectable">
+
+  <mat-card class="demo-button">   
+    <mat-card-title>
+      <h1>Transaction History</h1>      
+    </mat-card-title>
+    <mat-card-content>
+      <a routerLink="add">
+        <button mat-raised-button color="primary">New Transaction</button>
+      </a>      
+      <br/><br/>
+      <div align="end">
+        <mat-form-field style="width: 50%">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+        </mat-form-field>        
+      </div>
+    </mat-card-content>
+    
+  </mat-card>
+  <mat-table #table [dataSource]="matTableDataSource" matSort matSortActive="code" matSortDirection="asc" matSortDisableClear>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="orderPrice">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> OrderPrice </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="productId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> ProductId </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="quantity">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Quantity </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="totalPrice">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Total Price </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+  </ng-container>
+
+    <mat-header-row *matHeaderRowDef="matTableDataSourceColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: matTableDataSourceColumns;"
+             [class.selected]="selection.isSelected(row)"
+             (click)="selection.toggle(row)">
+    </mat-row>
+  </mat-table>
+  <mat-paginator #paginator [pageSize]=pageSize [pageSizeOptions]=pageSizeOptions showFirstLastButtons=true></mat-paginator>
+</div>

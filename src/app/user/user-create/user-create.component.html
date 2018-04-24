@@ -1,0 +1,95 @@
+<mat-card>
+    <mat-card-title>New User</mat-card-title>
+    <form 
+    [formGroup]="createForm"
+    (ngSubmit)="save($event)">
+    
+    <mat-card-content>
+        <!-- <div fxLayout="row wrap"> -->
+          <div class="mb-1">
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Username" [formControl]="createForm.controls['userName']">
+            </mat-form-field>
+            <small *ngIf="createForm.controls['userName'].hasError('required') && createForm.controls['userName'].touched" class="mat-text-warn">You must include an username.</small>
+            <small *ngIf="createForm.controls['userName'].hasError('minlength') && createForm.controls['userName'].touched" class="mat-text-warn">Your first name must be at least 5 characters long.</small>
+            <small *ngIf="createForm.controls['userName'].hasError('maxlength') && createForm.controls['userName'].touched" class="mat-text-warn">Your first name cannot exceed 10 characters.</small>
+          </div>
+        <!-- </div> -->
+  
+        <div class="mb-1">
+          <!-- <label> Authority: </label> -->
+         
+          <mat-form-field>
+              <mat-select placeholder="Authority" [formControl]="createForm.controls['authorityId']"  >
+                <mat-option matInput *ngFor="let autority of authoritys?.body"  [value]="autority?.id">
+                    {{autority?.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <small *ngIf="createForm.controls['authorityId'].hasError('required') && createForm.controls['authorityId'].touched" class="mat-text-warn">You must include an authority.</small>
+            
+            <!-- <ul *ngFor="let autority of authoritys"> -->
+                <!-- <mat-checkbox  [checked]="autority.active" (change)="changeAuthor($event)">
+                  {{autority.label}}  {{autority.active}}
+                </mat-checkbox> -->
+                <!-- <input type="checkbox" value="autority.id" [checked]="autority.active"  (change)="changeAuthor($event)"> {{autority.label}}
+              </ul> -->
+        </div>
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Email address" [formControl]="createForm.controls['email']" type="email">
+          </mat-form-field>
+          <small *ngIf="createForm.controls['email'].hasError('required') && createForm.controls['email'].touched" class="mat-text-warn">You must include an email address.</small>
+          <small *ngIf="createForm.controls['email'].errors?.email && createForm.controls['email'].touched" class="mat-text-warn">You must include a valid email address.</small>
+        </div>
+  
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="First Name" [formControl]="createForm.controls['firstName']" >
+          </mat-form-field>
+          <small *ngIf="createForm.controls['firstName'].hasError('required') && createForm.controls['firstName'].touched" class="mat-text-warn">You must include a first name.</small>
+          <small *ngIf="createForm.controls['firstName'].errors?.firstName && createForm.controls['firstName'].touched" class="mat-text-warn">You must include a valid name.</small>
+        </div>
+
+        <div class="mb-1">
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Last Name" [formControl]="createForm.controls['lastName']" >
+            </mat-form-field>
+            <small *ngIf="createForm.controls['lastName'].hasError('required') && createForm.controls['lastName'].touched" class="mat-text-warn">You must include a last name.</small>
+            <small *ngIf="createForm.controls['lastName'].errors?.lastName && createForm.controls['lastName'].touched" class="mat-text-warn">You must include a valid name.</small>
+          </div>
+   
+        <div class="mb-1">
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Password" [formControl]="createForm.controls['password']" type="password">
+            </mat-form-field>
+            <small *ngIf="createForm.controls['password'].hasError('password') && createForm.controls['password'].touched" class="mat-text-warn">You must include a web address.</small>
+            <small *ngIf="createForm.controls['password'].errors?.password && createForm.controls['password'].touched" class="mat-text-warn">You must include a valid web address.</small>
+          </div>
+
+        <!-- <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Confirm Password" [formControl]="form.controls['confirmPassword']" type="password">
+          </mat-form-field>
+              <small *ngIf="createForm.controls['confirmPassword'].hasError('required') && createForm.controls['confirmPassword'].touched" class="mat-text-warn">You must include confirm password.</small>
+              <small *ngIf="createForm.controls['confirmPassword'].errors?.equalTo" class="mat-text-warn">Passwords do not math.</small>
+          </div> -->
+          <div *ngIf="failedSave">
+              <mat-toolbar>
+                  <div class="warn">
+                    <h6>{{this.status?.status?.message}}: {{this.status?.status?.description}}</h6>
+                    <span flex></span> 
+                    </div>
+                </mat-toolbar>    
+           </div>
+      </mat-card-content>
+      <!-- <hr> -->
+      <hr>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit"  [disabled]="!createForm?.valid">Submit</button>
+        <button mat-raised-button  [routerLink]="['/user']">Cancel</button>
+      </mat-card-actions>
+    </form>
+    <!-- <app-modal-save *ngIf="successDialog"></app-modal-save> -->
+  </mat-card>
+

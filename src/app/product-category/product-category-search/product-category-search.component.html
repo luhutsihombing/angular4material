@@ -1,0 +1,57 @@
+<mat-card class="demo-table-card">
+  <mat-card-title>
+    <span style="margin-right: auto;" class="mb-1 block">
+      <h1 class="mt-0">Product Category</h1>
+    </span>
+  </mat-card-title>
+  <mat-card-content>
+    <div class="mt-0">
+      <button mat-raised-button color="primary" routerLink="/productCategory/create" routerLinkActive="active">
+        <span>Add Product Category</span>
+      </button>
+    </div>
+    <br/>
+    <div align="end">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+  <div class="demo-table-container demo-mat-table-example mat-elevation-z4">
+    <mat-table #table [dataSource]="dataSource" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear>
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="code">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Product Category Code </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.code}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Product Category Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <a title="Edit" [routerLink]="['/productCategory/edit', row?.id]">
+              <i class="fa fa-edit"></i>
+            </a>&nbsp;
+             <a title="Delete" (click)="showDialog(row)">
+              <i class="fa fa-remove"></i>
+            </a>
+          <!-- <button mat-raised-button color="cyan" [routerLink]="['/productCategory/edit', row?.id]">Edit</button>
+          <button mat-raised-button color="warn" (click)="showDialog(row)">Delete</button> -->
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator [pageSize]=pageSize [pageSizeOptions]=pageSizeOptions showFirstLastButtons=true></mat-paginator>
+  </div>
+</mat-card>

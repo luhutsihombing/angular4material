@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-title>
+    <span style="margin-right: auto;" class="mb-1 block">
+      <h1 class="mt-0">Form Product Category</h1>
+    </span>
+  </mat-card-title>
+  <hr>
+  <form>
+    <mat-card-content>
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput formControlName="id" placeholder="Product Category Id" readonly>
+        </mat-form-field>
+      </div>
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput formControlName="code" placeholder="Product Category Code">
+        </mat-form-field>
+        <mat-error>
+          <small *ngIf="!prodCatForm.get('code').valid && prodCatForm.get('code').touched">This field is required.</small>
+        </mat-error>
+      </div>
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput formControlName="name" placeholder="Product Category Name">
+        </mat-form-field>
+        <mat-error>
+          <small *ngIf="!prodCatForm.get('name').valid && prodCatForm.get('name').touched">This field is required.</small>
+        </mat-error>
+      </div>
+    </mat-card-content>
+    <hr>
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!prodCatForm?.valid">Submit</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

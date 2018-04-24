@@ -1,0 +1,51 @@
+<mat-card>
+    <mat-card-title>New Transaction</mat-card-title>
+    <form [formGroup]="createForm" (ngSubmit)="save($event)">
+      <mat-card-content>    
+        <div class="mb-1">
+        <mat-form-field>
+          <mat-select placeholder="product" (change)="changeProduct($event)" [formControl]="createForm.controls['productId']"  >
+            <mat-option matInput *ngFor="let product of products"  [value]="product">
+                {{product?.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <small *ngIf="createForm.controls['productId'].hasError('required') && createForm.controls['productId'].touched" class="mat-text-warn">You must include a product.</small>
+        </div>
+
+        <div class="mb-1">
+            <mat-form-field style="width: 100%">
+              <input type="number" (change)="changeQuantity($event)" matInput placeholder="Quantity" [formControl]="createForm.controls['quantity']" >
+            </mat-form-field>
+            <small *ngIf="createForm.controls['quantity'].hasError('required') && createForm.controls['quantity'].touched" class="mat-text-warn">You must include a quantity.</small>
+            <small *ngIf="createForm.controls['quantity'].errors?.quantity && createForm.controls['quantity'].touched" class="mat-text-warn">You must include a quantity.</small>
+          </div>
+        
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input type="number" matInput placeholder="Price" value="{{orderPrice}}" readonly>
+          </mat-form-field>
+        </div>        
+
+          <div class="mb-1">
+            <mat-form-field style="width: 100%">
+              <input type="number" matInput placeholder="Total Price Product" value={{totalPriceProduct}} [formControl]="createForm.controls['totalPriceProduct']" readonly>
+            </mat-form-field>
+          </div>
+
+          <div class="mb-1">
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Total Price" value={{totalPrice}} [formControl]="createForm.controls['totalPrice']" readonly>
+            </mat-form-field>
+          </div>
+  
+      </mat-card-content>
+      <hr>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <button mat-raised-button  [routerLink]="['/transaction']">Cancel</button>
+      </mat-card-actions>
+    </form>
+    <!-- <app-modal-save *ngIf="successDialog"></app-modal-save> -->
+  </mat-card>
+

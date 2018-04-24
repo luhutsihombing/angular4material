@@ -1,0 +1,72 @@
+<mat-card>
+    <mat-card-title>Form User</mat-card-title>
+    <mat-card-subtitle>Edit User</mat-card-subtitle>
+    <form 
+    [formGroup]="editForm"
+    (ngSubmit)="save($event)">
+      <mat-card-content>
+        <div fxLayout="row wrap">
+          <div class="mb-1">
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Username" [formControl]="editForm.controls['userName']" readonly>
+            </mat-form-field>
+            <small *ngIf="editForm.controls['userName'].hasError('required') && editForm.controls['userName'].touched" class="mat-text-warn">You must include a username.</small>
+            <!-- <small *ngIf="editForm.controls['userName'].hasError('minlength') && editForm.controls['userName'].touched" class="mat-text-warn">Your first name must be at least 5 characters long.</small>
+            <small *ngIf="editForm.controls['userName'].hasError('maxlength') && editForm.controls['userName'].touched" class="mat-text-warn">Your first name cannot exceed 10 characters.</small> -->
+          </div>
+        </div>
+
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Authority Name" value="{{userAuthName}}" type="authorityName" [disabled]="true">
+          </mat-form-field>
+          <!-- <small *ngIf="editForm.controls['authorityName'].hasError('required') && editForm.controls['authorityName'].touched" class="mat-text-warn">You must include an authority</small> -->
+        </div>
+  
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Email address" [formControl]="editForm.controls['email']" type="email" readonly>
+          </mat-form-field>
+          <small *ngIf="editForm.controls['email'].hasError('required') && editForm.controls['email'].touched" class="mat-text-warn">You must include an email address.</small>
+          <small *ngIf="editForm.controls['email'].errors?.email && editForm.controls['email'].touched" class="mat-text-warn">You must include a valid email address.</small>
+        </div>
+  
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="First Name" [formControl]="editForm.controls['firstName']" >
+          </mat-form-field>
+          <small *ngIf="editForm.controls['firstName'].hasError('required') && editForm.controls['firstName'].touched" class="mat-text-warn">You must include a first name.</small>
+          <small *ngIf="editForm.controls['firstName'].errors?.firstName && editForm.controls['firstName'].touched" class="mat-text-warn">You must include a valid name.</small>
+        </div>
+
+        <div class="mb-1">
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Last Name" [formControl]="editForm.controls['lastName']" >
+            </mat-form-field>
+            <small *ngIf="editForm.controls['lastName'].hasError('required') && editForm.controls['lastName'].touched" class="mat-text-warn">You must include a last name.</small>
+            <small *ngIf="editForm.controls['lastName'].errors?.lastName && editForm.controls['lastName'].touched" class="mat-text-warn">You must include a valid name.</small>
+          </div>
+   
+        <div class="mb-1">
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Password" [formControl]="editForm.controls['password']" type="password">
+            </mat-form-field>
+            <small *ngIf="editForm.controls['password'].hasError('password') && editForm.controls['password'].touched" class="mat-text-warn">You must include a web address.</small>
+            <small *ngIf="editForm.controls['password'].errors?.password && editForm.controls['password'].touched" class="mat-text-warn">You must include a valid web address.</small>
+          </div>
+      </mat-card-content>
+      <hr>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!editForm.valid">Submit</button>
+        <button mat-raised-button  [routerLink]="['/user']">Cancel</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+
+
+
+
+
+
+
+

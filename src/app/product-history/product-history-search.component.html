@@ -1,0 +1,59 @@
+<mat-card class="demo-table-card">
+  <mat-card-title>
+    <span style="margin-right: auto;" class="mb-1 block">
+      <h1 class="mt-0">Product History</h1>
+    </span>
+  </mat-card-title>
+  <mat-card-content>
+  <div align="end">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+  </div>
+  <div class="demo-table-container demo-mat-table-example mat-elevation-z4">
+    <mat-table #table [dataSource]="matTableDataSource" matSort matSortActive="id" matSortDirection="asc" matSortDisableClear>
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="code">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Product History Code </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.code}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Product History Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="shortDescription">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Short Description </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.shortDescription}} </mat-cell>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="stock">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Stock </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.stock}} </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="matTableDataSourceColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: matTableDataSourceColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator [pageSize]=pageSize [pageSizeOptions]=pageSizeOptions showFirstLastButtons=true></mat-paginator>
+
+  </div>
+</mat-card-content>
+
+</mat-card>

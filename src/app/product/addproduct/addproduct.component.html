@@ -1,0 +1,75 @@
+<mat-card class="demo-card demo-basic">
+  <mat-card-title><h2>Add Product</h2></mat-card-title>
+  <mat-card-content>
+    <form #f="ngForm" (ngSubmit)="saveProduct2(f.value)">
+      
+      <table style="width: 100%" cellspacing="0"><tr>
+        <td>
+          <mat-form-field style="width: 100%" >
+            <input matInput ngModel placeholder="Code" name="code" id="code">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field style="width: 100%">
+            <input matInput ngModel placeholder="Name" id="name"  name="name" >
+          </mat-form-field>
+        </td>
+       
+      </tr>      
+    </table>
+    <table style="width: 100%" cellspacing="0">
+    <tr>
+         <td>
+         <mat-form-field style="width: 100%">
+            <input matInput ngModel #postalCode maxLength="5" placeholder="Price" id="price" name="price">            
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field style="width: 100%">
+           <input matInput ngModel placeholder="Stock" id="stock" name="stock">
+          </mat-form-field>
+        </td>
+        
+      </tr>
+    <tr>
+     <td>          
+        <mat-form-field style="width: 100%">
+           <mat-select placeholder="Category" ngModel id="productCategoryid" name="productCategoryid">
+             <mat-option>None</mat-option>
+              <mat-option *ngFor="let data of catRES.body" [value]="data.id">
+               {{ data.name }}
+              </mat-option>
+           </mat-select>
+           <mat-error>You must make a selection</mat-error>
+         </mat-form-field>
+      </td>
+    </tr>
+    </table>
+   <table style="width: 100%" cellspacing="0">    
+   <tr>
+        <td>
+          <mat-form-field style="width: 100%" >
+            <input matInput ngModel placeholder="Short Description" id="shortDescription" name="shortDescription">
+          </mat-form-field>
+        </td>
+        
+    </tr>
+      <tr>
+       <td>
+            <mat-form-field style="width: 100%">
+              <input matInput ngModel placeholder="Description" id="description" name="description">
+            </mat-form-field>
+          </td>
+      </tr>
+      <tr>
+        
+       <td></td>
+        <td>           
+           <button type="Submit"  mat-raised-button color="primary">Submit</button>           
+        </td>
+      </tr>
+    </table>
+    
+    </form>
+  </mat-card-content>
+</mat-card>

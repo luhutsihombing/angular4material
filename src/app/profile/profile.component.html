@@ -1,0 +1,69 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span fxFlex></span>      
+      <h1 class="ma-0"><b>Profile</b></h1>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <div class="wrapper">
+    <div fxLayout="row wrap">
+      <div fxFlex.gt-sm="40" fxFlex="100">
+        <mat-card>
+          <mat-card-content>
+            <div fxLayout="row">
+              <div fxFlex="55">
+                <h1 class="ma-0">{{auth.user.firstName}} <b>{{auth.user.lastName}}</b></h1>
+                <small>{{auth.user.email}}</small>
+                <p class="mt-xs mb-xs">{{auth.user.authority.name}}</p>
+                <a href="javascript:;" class="block mt-xs mb-xs">{{auth.user.activeStatus}}</a>
+                
+                <button mat-raised-button color="primary">Edit Profile</button>
+              </div>
+              <div fxFlex="45">
+                <figure>
+                  <div class="text-xs-center">
+                    <img src="https://cdn1.iconfinder.com/data/icons/business-charts/512/customer-128.png" alt="" class="radius-circle">
+                    
+                  </div>
+                  <div class="ma-xs">
+                    <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                  </div>                  
+                </figure>
+              </div>
+            </div>
+          </mat-card-content>          
+          <hr>
+          <mat-card-content>
+            <h4 class="mt-0">About</h4>
+            <p>{{auth.user.userName}}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div fxFlex.gt-sm="60" fxFlex="100">
+        <div fxLayout="column">
+          <mat-card class="profile-post">
+            <form  fxLayout="row">
+              <textarea placeholder="What's on your mind" rows="6"></textarea>
+            </form>
+            <hr>
+            <mat-card-actions>
+              <div fxLayout="row">
+                <button mat-icon-button>
+                  <mat-icon>insert_photo</mat-icon>
+                </button>
+                <button mat-icon-button>
+                  <mat-icon>insert_link</mat-icon>
+                </button>
+                <button mat-icon-button>
+                  <mat-icon>location_on</mat-icon>
+                </button>
+                <span fxFlex></span>
+                <button mat-raised-button color="primary">Post</button>
+              </div>
+            </mat-card-actions>
+          </mat-card>
+          
+        </div>
+      </div>
+    </div>
+  </div>  

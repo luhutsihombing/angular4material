@@ -1,0 +1,47 @@
+<mat-card class="demo-table-card">
+    <mat-card-title>
+      <span style="margin-right: auto;" class="mb-1 block">
+        <h1 class="mt-0">Transaction View</h1>
+      </span>
+    </mat-card-title>
+    <mat-card-content>
+        <div class="mb-1">
+            <mat-form-field style="width: 100%">
+                <input matInput placeholder="Id" value="{{transaction?.id}}" readonly>
+            </mat-form-field>
+        </div>
+        <div class="mb-1">
+            <mat-form-field style="width: 100%">
+                <input matInput placeholder="Order Date" value="{{transaction?.orderDate | date:'dd - MM - yyyy'}}" readonly>
+            </mat-form-field>
+        </div>
+        <div class="mb-1">
+            <mat-form-field style="width: 100%">
+                <input matInput placeholder="Total Price" value="{{transaction?.totalPrice}}" readonly>
+            </mat-form-field>
+        </div>     
+        <div class="mb-1">
+                <mat-form-field style="width: 100%">
+                    <input matInput placeholder="Status" value="{{transaction?.status}}" readonly>
+                </mat-form-field>
+        </div> 
+        
+    <h3 class="mt-0">Transaction detail</h3>
+        <div class="mb-1">
+            <mat-form-field style="width: 100%">
+                <input matInput placeholder="Total Price" value="{{transaction?.totalPrice}}" readonly>
+            </mat-form-field>
+        </div>                     
+    
+ </mat-card-content>
+    <mat-card-actions>
+            <button mat-raised-button  [routerLink]="['/transaction']">Back</button>
+    </mat-card-actions>
+
+  </mat-card>
+  
+  
+      
+   
+  
+  

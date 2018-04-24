@@ -1,0 +1,26 @@
+diff a/src/app/product/product.component.html b/src/app/product/product.component.html	(rejected hunks)
+@@ -1,14 +1,15 @@
+ 
+-<h2 class="mt-3">Master Product</h2>
+-<mat-form-field>
+-  <input matInput #filter placeholder="Filter product">
+-</mat-form-field>
+-
+ <div class="demo-table-container demo-mat-table-example mat-elevation-z4 mat-table-selectable">
+-
+-  
+-
+-
++  <mat-card class="demo-button">   
++    <mat-card-title>
++      <h1>Master Product</h1>      
++    </mat-card-title>
++    <mat-card-content>
++      <a routerLink="add">
++        <button mat-raised-button color="primary">New Product</button>
++      </a>
++    </mat-card-content>
++  </mat-card>
+   <mat-table [dataSource]="matTableDataSource" >
+ 
+   <ng-container matColumnDef="code">
